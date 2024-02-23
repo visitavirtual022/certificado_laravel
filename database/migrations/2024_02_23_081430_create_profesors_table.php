@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string("apellidos");
             $table->string("email")->unique();
             $table->string("departamento"); //['informática', 'comercio', 'imagen']
-            $table->string("departamento");
             $table->timestamps();
 
         });

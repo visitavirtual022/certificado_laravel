@@ -16,12 +16,13 @@ class ProfesorFactory extends Factory
      */
     public function definition(): array
     {
+        $departamento=["informática", "Comercio","imagen"];
         return [
             'nombre'=> fake()->name(),
             'apellido'=> fake()->lastname(),
             'direccion'=> fake()->address(),
-            'email'=> fake()->email(),
-            'telefono'=> fake()->phoneNumber()
+            'email'=> fake()->email()->safeEmail,
+            'departamento'=> fake()->randomElement(),
             //
         ];
     }

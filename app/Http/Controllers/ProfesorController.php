@@ -29,7 +29,12 @@ class ProfesorController extends Controller
      */
     public function store(StoreProfesorRequest $request)
     {
-        //
+        $valores = $request->input();
+        $profesor = new Profesor($valores);
+        $profesor->save();
+        $profesores = Profesor::all();
+        session()->flash("status", "Se ha creado $profesor->id");
+        return view ("profesores.listado",["profesores"=>$profesores]);
     }
 
     /**
@@ -61,6 +66,11 @@ class ProfesorController extends Controller
      */
     public function destroy(Profesor $profesor)
     {
+        dd($profesor);
+        $profesor->delete();
+        $profesores = Profesor::all();
+        session()->flash("status", "Se ha creado $profesor->id");
+        return view ("profesores.listado",["profesores"=>$profesores]);
         //
     }
 }

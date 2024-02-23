@@ -3,6 +3,7 @@
     <a href="" class="  btn btn-outline btn-info"> Contacta</a>
     <a href="" class="  btn btn-outline btn-secondary"> Proyectos</a>
     <a href="/alumnos" class="  btn btn-outline btn-secondary"> Alumnos</a>
+    <a href="/profesores" class="  btn btn-outline btn-secondary"> Profesores</a>
     <a href="main" class="  btn btn-outline btn-neutral"> Principal</a>
 </nav>
 <nav class ="flex lg:hidden bg-nav flex flex-col justify-start items-center px-5 space-y-5">
@@ -10,6 +11,7 @@
     <a href="" class="  btn btn-info"> Contacta</a>
     <a href="" class="  btn btn-secondary"> Proyectos</a>
     <a href="" class="  btn btn-secondary"> Alumnos</a>
+    <a href="" class="  btn btn-secondary"> Profesores</a>
     <a href="main" class="  btn btn-neutral"> Principal</a>
 </nav>
 

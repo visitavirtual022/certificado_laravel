@@ -19,9 +19,8 @@ class ProfesorFactory extends Factory
         $departamento=["informática", "Comercio","imagen"];
         return [
             'nombre'=> fake()->name(),
-            'apellido'=> fake()->lastname(),
-            'direccion'=> fake()->address(),
-            'email'=> fake()->email()->safeEmail,
+            'apellidos'=> fake()->lastname(),
+            'email'=> fake()->email(),
             'departamento'=> fake()->randomElement(),
             //
         ];

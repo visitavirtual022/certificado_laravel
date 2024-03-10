@@ -9,6 +9,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProfesorFactory extends Factory
 {
+    private function getDni(): string
+    {
+
+        $letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+        $numero = fake()->randomNumber(8);
+        $letra = $letras[$numero%23];
+        $dni = "$numero-$letra";
+        return $dni;
+
+    }
     /**
      * Define the model's default state.
      *
@@ -20,6 +30,7 @@ class ProfesorFactory extends Factory
         return [
             'nombre'=> fake()->name(),
             'apellidos'=> fake()->lastname(),
+            'dni'=> $this->getDni(),
             'email'=> fake()->email(),
             'departamento'=> fake()->randomElement(),
             //

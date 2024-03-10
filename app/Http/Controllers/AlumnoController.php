@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAlumnoRequest;
 use App\Http\Requests\UpdateAlumnoRequest;
 use App\Models\Alumno;
+use Illuminate\Support\Facades\Request;
 
 class AlumnoController extends Controller
 {
@@ -13,8 +14,9 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        $alumnos = Alumno::all();
-        return view("Alumnos.listado",["alumnos"=>$alumnos]);
+        $alumnos = Alumno::paginate (5);
+        $page = Request::get('page')??1;
+        return view("Alumnos.listado",compact("alumnos", "page"));
         //
     }
 
@@ -33,10 +35,13 @@ class AlumnoController extends Controller
     public function store(StoreAlumnoRequest $request)
     {
         $valores = $request->input();
+
         $alumno = new Alumno($valores);
+
         $alumno->save();
-        $alumnos = Alumno::all();
-        return view ("Alumnos.listado",["alumnos"=>$alumno]);
+        $alumnos = Alumno::paginate(5);
+        $page = $alumnos->lastPage();
+        return view ("Alumnos.listado",["alumnos"=>$alumnos, "page"=>$page]);
     }
 
     /**
@@ -44,6 +49,7 @@ class AlumnoController extends Controller
      */
     public function show(Alumno $alumno)
     {
+             return view("Alumnos.show", compact('alumno'));
         //
     }
 
@@ -51,23 +57,22 @@ class AlumnoController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Alumno $alumno)
-
     {
-
-       return view("Alumnos.editar", ["alumnos"=>$alumno]);
-
+        $page= Request::get("page");
+        return view('Alumnos.editar', ["alumno" => $alumno, "page" => $page]);
     }
-
-    /**
+   /**
      * Update the specified resource in storage.
      */
     public function update(UpdateAlumnoRequest $request, Alumno $alumno)
     {
-        $valores = $request->input();
-        $alumno->update($valores);
-        $alumnos = Alumno::all();
-        return view ("Alumnos.listado", ["alumnos" =>$alumnos]);
-        //
+        $page= Request::get("page");
+        // recojo todos los inputs del formulario
+        // $request es la solicitud que trae con ella un formulario con datos
+        $valores = $request->input();  // leo los datos del formulario
+        $alumno->update($valores);  // actualizo el alumno que estoy editando y lo actualizo con los nuevos datos del formulario
+        /* return response()->redirectTo(route("alumnos.index", ["page" => $page])); */
+        return redirect(route("alumnos.index", ["page" => $page])); // lo mismo:flecha_en_dirección_ascendente:
     }
 
     /**
@@ -75,10 +80,9 @@ class AlumnoController extends Controller
      */
     public function destroy(Alumno $alumno)
     {
-
         $alumno-> delete();
-
-        $alumnos = Alumno::all();
-        return view ("Alumnos.listado",["alumnos"=>$alumnos]);
+        $alumnos = Alumno::paginate (5);
+        return back();
+        return view ("Alumnos.listado",["alumnos"=>$alumnos,"page"=>$page]);
     }
 }

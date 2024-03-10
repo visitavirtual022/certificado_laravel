@@ -17,14 +17,20 @@ use App\Http\Controllers\ProfesorController;
 */
 Route::view("main", "main");
 Route::view("about", "about");
+Route::view("contacta", "contacta");
 
-Route::resource("alumnos", AlumnoController::class);
-
+//Route::view("saludo", "saludo");
+Route::get("react", \App\Http\Controllers\MainController::class);
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource("alumnos", AlumnoController::class);
 Route::resource("profesores", \App\Http\Controllers\ProfesorController::class);
+
+Route::get('/', function () {
+    return view('main');
+})->name('index');
 
 
 Route::get('/dashboard', function () {

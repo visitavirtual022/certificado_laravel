@@ -7,6 +7,7 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './resources/js/**/*.jsx'
     ],
 
     theme: {
@@ -20,7 +21,7 @@ export default {
                 "15v": "15vh",
             },
             colors: {
-                "header": "#750D37",
+                "header": "#050505",
                 "footer": "#a39da0",
                 "main": "#E5FCF5",
                 "nav": "#B3DEC1",

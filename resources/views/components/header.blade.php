@@ -8,12 +8,13 @@
         <a href="register" class = "btn glass text-white">Register</a>
     </div>
     @endguest
+
     @auth
     <div class="space-x-4">
         <h4 class="text-white uppercase text-6xl">{{auth()->user()->name}}</h4>
         <form action="logout" method="POST">
             @csrf
-    <button class="btn glass text-white" type="submit">Button</button>
+    <button class="btn glass text-white" type="submit">Log out</button>
         </form>
     </div>
     @endauth
